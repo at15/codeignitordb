@@ -1,0 +1,10 @@
+{
+    "name": "at15/codeignitordb",
+    "description": " a copy of codeignitor's database library",
+    "homepage": "http://github.com/at15/codeignitordb",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.5.0"
+    }
+}
