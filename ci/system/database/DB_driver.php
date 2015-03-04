@@ -630,10 +630,12 @@ abstract class CI_DB_driver
 
                 // Throw exceptions instead of display errors
                 // Hacked by: ComMouse & at15
-                throw new \Dy\Db\Exception\DbException('Database error : '.$error['message'],$error['code']);
+                if (class_exists('DbException')) {
+                    throw new \Dy\Db\Exception\DbException('Database error : ' . $error['message'], $error['code']);
+                }
 
                 // Display errors
-                // return $this->display_error(array('Error Number: ' . $error['code'], $error['message'], $sql));
+                return $this->display_error(array('Error Number: ' . $error['code'], $error['message'], $sql));
             }
 
             return FALSE;
