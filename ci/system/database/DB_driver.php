@@ -630,7 +630,7 @@ abstract class CI_DB_driver
 
                 // Throw exceptions instead of display errors
                 // Hacked by: ComMouse & at15
-                if (class_exists('DbException')) {
+                if (class_exists('\Dy\Db\Exception\DbException')) {
                     throw new \Dy\Db\Exception\DbException('Database error : ' . $error['message'], $error['code']);
                 }
 
