@@ -628,6 +628,12 @@ abstract class CI_DB_driver
                     } while ($this->_trans_depth !== 0);
                 }
 
+                // Throw exceptions instead of display errors
+                // Hacked by: ComMouse & at15
+                if (class_exists('\Dy\Db\Exception\DbException')) {
+                    throw new \Dy\Db\Exception\DbException('Database error : ' . $error['message'], $error['code']);
+                }
+
                 // Display errors
                 return $this->display_error(array('Error Number: ' . $error['code'], $error['message'], $sql));
             }
@@ -1536,12 +1542,6 @@ abstract class CI_DB_driver
      */
     public function display_error($error = '', $swap = '', $native = FALSE)
     {
-        // Throw exceptions instead of display errors
-        // Hacked by: ComMouse & at15
-        if (class_exists('\Dy\Db\Exception\DbException')) {
-            throw new \Dy\Db\Exception\DbException('Database error : ' . $error['message'], $error['code']);
-        }
-
         $LANG =& load_class('Lang', 'core');
         $LANG->load('db');
 
