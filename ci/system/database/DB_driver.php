@@ -628,12 +628,12 @@ abstract class CI_DB_driver
                     } while ($this->_trans_depth !== 0);
                 }
 
-                if(defined('PHPUNIT_FOR_CI')){
-                    throw new Exception('Database error : '.$error['message'],$error['code']);
-                }
+                // Throw exceptions instead of display errors
+                // Hacked by: ComMouse & at15
+                throw new \Dy\Db\Exception\DbException('Database error : '.$error['message'],$error['code']);
 
                 // Display errors
-                return $this->display_error(array('Error Number: ' . $error['code'], $error['message'], $sql));
+                // return $this->display_error(array('Error Number: ' . $error['code'], $error['message'], $sql));
             }
 
             return FALSE;
